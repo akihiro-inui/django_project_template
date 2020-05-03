@@ -1,6 +1,6 @@
 # Django Project Template
 ## Purpose
-I'm lazy and I wanted to make template to kick start projects with Django. 
+I'm lazy and I wanted to make template to kick-start Django projects qucikly.  
 This template includes followings. 
 1. Django. 
 2. PostgreSQL Database. 
