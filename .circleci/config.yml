@@ -5,12 +5,45 @@ orbs:
 
 jobs:
   build-and-test:
+    docker:
+      # Python environment
+      - image: circleci/python:3.6.2-stretch-browsers
+        environment:
+          TEST_DATABASE_URL: localhost
+          DEPLOYMENT: 'test'
+
+      # Postgres DB
+      - image: circleci/postgres:12
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
+          POSTGRES_PASSWORD: 'postgres'
+
     executor: python/default
     steps:
       - checkout
       - python/load-cache
       - python/install-deps
       - python/save-cache
+
+      # Update & install libraries
+      - run: sudo apt-get update
+      - run: sudo apt-get install postgresql-client-9.6
+      - run: sudo apt-get -y install ffmpeg
+      - run: sudo apt-get -y install sox
+      - run: sudo apt install rsync grsync
+
+      # Install Python libraries
+      - run:
+          name: Install Python dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
       - run:
           command: app/manage.py test
           name: Test
