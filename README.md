@@ -11,15 +11,8 @@ This template includes followings.
 Dev:  [![CircleCI](https://circleci.com/gh/inuinana/data_uploader/tree/dev.svg?style=svg)](https://circleci.com/gh/inuinana/data_uploader/tree/dev)  
 Master: [![CircleCI](https://circleci.com/gh/inuinana/data_uploader/tree/master.svg?style=svg)](https://circleci.com/gh/inuinana/data_uploader/tree/master)  
 
-## How to run the app locally (Mac)
+## How to run the app locally
 
-## Get PostgreSQL Database and run
-$ brew update  
-$ brew doctor  
-$ brew install postgres  
-$ pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
-
-## Now run the app
 $ cd docker-compose/test  
 $ docker-compose build  
 $ docker-compose up -d
