@@ -30,10 +30,10 @@ class ConfigReader:
     def __init_database(self, cfg):
         # Check config file exist
         config_file_path = os.path.join(self.config_folder_path, 'db_config.ini')
-        cfg.read(config_file_path)
         assert os.path.isfile(config_file_path), f"{config_file_path} is not a valid configuration file!"
 
         # Read parameters
+        cfg.read(config_file_path)
         self.DATABASE_HOST = cfg.get('database', 'DATABASE_HOST')
         self.DATABASE_PORT = cfg.get('database', 'DATABASE_PORT')
         self.DATABASE_NAME = cfg.get('database', 'DATABASE_NAME')
